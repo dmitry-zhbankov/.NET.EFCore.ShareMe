@@ -12,6 +12,33 @@ namespace ShareMe.DAL.Configuration
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
+            builder.HasData(CreateCategories());
+        }
+
+        private IEnumerable<Category> CreateCategories()
+        {
+            var list = new List<Category>();
+            list.Add(new Category()
+            {
+                CategoryId=1,
+                Title = "Category 1"
+            });
+            list.Add(new Category()
+            {
+                CategoryId = 2,
+                Title = "Category 2"
+            });
+            list.Add(new Category()
+            {
+                CategoryId = 3,
+                Title = "Category 3"
+            });
+            list.Add(new Category()
+            {
+                CategoryId = 4,
+                Title = "Category 4"
+            });
+            return list;
         }
     }
 }

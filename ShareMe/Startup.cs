@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using ShareMe.DAL.Context;
 using ShareMe.DAL.Repository;
 using ShareMe.DAL.UnitOfWork;
+using ShareMe.Middlewares;
 
 namespace ShareMe
 {
@@ -35,6 +36,7 @@ namespace ShareMe
             services.AddSingleton<IAuthorRepository, AuthorRepository>();
             services.AddSingleton<ITagRepository, TagRepository>();
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,14 +53,22 @@ namespace ShareMe
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
+            app.UseSession();
+
             app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseAuthorization();
 
+            app.UseAuthenticationMiddleware();
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "MyArea",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

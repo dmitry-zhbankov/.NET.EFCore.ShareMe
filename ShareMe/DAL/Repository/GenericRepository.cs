@@ -36,7 +36,7 @@ namespace ShareMe.DAL.Repository
             return query.ToList();
         }
 
-        public virtual T GetById(int id)
+        public virtual T GetById(int? id)
         {
             return dbSet.Find(id);
         }

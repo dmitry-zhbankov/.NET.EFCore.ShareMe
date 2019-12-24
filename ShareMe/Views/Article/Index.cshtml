@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ShareMe.Models.Entity.Article>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div class="nav-panel">
+    
+</div>
+
+<div class="article-list">
+    @{
+        foreach (var article in Model)
+        {
+        <div class="article-thumbnail">
+            <div>
+                <img src="data:image/gif;base64,(@article.Preview)" />
+            </div>
+            <div>
+                <span>@article.Author.Name</span>
+                <span>@article.Date.ToShortDateString()</span>
+            </div>
+            <p>@article.Content</p>
+            <div>
+                @foreach (var tag in article.ArticleTags)
+                {
+                    <span>@tag.Tag.Name</span>
+                }
+            </div>
+            <div>
+                <a asp-action="">Read more</a>
+            </div>
+        </div>
+           
+        }
+    }
+</div>

@@ -10,7 +10,7 @@ namespace ShareMe.DAL.Repository
     {
         IEnumerable<T> Get(Expression<Func<T, bool>> filter);
 
-        T GetById(int id);
+        T GetById(int? id);
 
         void Create(T entity);
 

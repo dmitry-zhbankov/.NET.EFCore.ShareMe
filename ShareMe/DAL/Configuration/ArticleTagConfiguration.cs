@@ -21,6 +21,54 @@ namespace ShareMe.DAL.Configuration
             builder.HasOne(pt => pt.Tag)
                 .WithMany(t => t.ArticleTags)
                 .HasForeignKey(pt => pt.TagId);
+
+            builder.HasData(CreateArticleTags());
+        }
+
+        private IEnumerable<object> CreateArticleTags()
+        {
+            var list = new List<object>();
+            list.Add(new
+            {
+                ArticleId = 1,
+                TagId = 1
+            });
+            list.Add(new
+            {
+                ArticleId = 1,
+                TagId = 2
+            });
+            list.Add(new
+            {
+                ArticleId = 1,
+                TagId = 3
+            });
+            list.Add(new
+            {
+                ArticleId = 2,
+                TagId = 1
+            });
+            list.Add(new
+            {
+                ArticleId = 2,
+                TagId = 2
+            });
+            list.Add(new
+            {
+                ArticleId = 3,
+                TagId = 1
+            });
+            list.Add(new
+            {
+                ArticleId = 4,
+                TagId = 2
+            });
+            list.Add(new
+            {
+                ArticleId = 5,
+                TagId = 3
+            });
+            return list;
         }
     }
 }
