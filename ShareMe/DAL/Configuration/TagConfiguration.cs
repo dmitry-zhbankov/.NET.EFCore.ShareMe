@@ -12,7 +12,7 @@ namespace ShareMe.DAL.Configuration
     {
         public void Configure(EntityTypeBuilder<Tag> builder)
         {
-            builder.HasData(CreateTags());
+            //builder.HasData(CreateTags());
         }
 
         private IEnumerable<Tag> CreateTags()

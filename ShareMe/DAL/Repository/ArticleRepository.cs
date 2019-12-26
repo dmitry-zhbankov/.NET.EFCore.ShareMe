@@ -15,6 +15,16 @@ namespace ShareMe.DAL.Repository
         {
         }
 
+        public override Article GetById(int? id)
+        {
+            var query = dbSet.Where(x=>x.ArticleId==id)
+                .Include(x => x.Author)
+                .Include(x => x.Category)
+                .Include(x => x.ArticleTags)
+                .ThenInclude(x => x.Tag);
+            return query.FirstOrDefault();
+        }
+
         public override IEnumerable<Article> Get(Expression<Func<Article, bool>> filter)
         {
             var query = dbSet.Where(filter)

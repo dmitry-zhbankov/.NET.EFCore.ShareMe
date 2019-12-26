@@ -1,0 +1,86 @@
+﻿@model ShareMe.Models.Entity.Article
+
+@{
+    ViewData["Title"] = "Update article";
+}
+
+<h1>Article</h1>
+<hr />
+@{
+    var mod = @Model;
+}
+<form asp-action="Update" enctype="multipart/form-data" >
+    
+    <input type="hidden" asp-for="ArticleId" />
+    
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Author.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Category.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticleTags)
+        </dt>
+
+        <dd>
+            @{
+                foreach (var tag in Model.ArticleTags)
+                {
+                    <input type="hidden" value="@tag.TagId" />
+                    <span>@tag.Tag.Name</span>
+                }
+            }
+        </dd>
+    </dl>
+
+    <div>
+        <label asp-for="Preview"></label>
+        @{
+            string imgSrc = "";
+            if (Model?.Preview != null)
+            {
+                var base64 = Convert.ToBase64String(Model.Preview);
+                imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            }
+            <img src="@imgSrc" />
+        }
+    </div>
+    
+        <div>
+            <input type="file" name="preview"/>
+        </div>
+    
+    <div>
+        <label asp-for="Annotation"></label>
+        <div>
+            <textarea asp-for="Annotation"></textarea>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="Content"></label>
+        <div>
+            <textarea asp-for="Content"></textarea>
+        </div>
+    </div>
+
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+
+</form>
+    
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

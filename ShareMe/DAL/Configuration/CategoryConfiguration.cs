@@ -12,7 +12,7 @@ namespace ShareMe.DAL.Configuration
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.HasData(CreateCategories());
+            //builder.HasData(CreateCategories());
         }
 
         private IEnumerable<Category> CreateCategories()

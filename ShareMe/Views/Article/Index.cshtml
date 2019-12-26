@@ -7,33 +7,49 @@
 <h1>Index</h1>
 
 <div class="nav-panel">
-    
+
 </div>
 
-<div class="article-list">
+<div>
     @{
         foreach (var article in Model)
         {
         <div class="article-thumbnail">
-            <div>
-                <img src="data:image/gif;base64,(@article.Preview)" />
+            <div class="image-container">
+                @{
+                    string imgSrc = "";
+                    if (article.Preview != null)
+                    {
+                        var base64 = Convert.ToBase64String(article.Preview);
+                        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    }
+                    <img src="@imgSrc" />
+                }
             </div>
-            <div>
-                <span>@article.Author.Name</span>
-                <span>@article.Date.ToShortDateString()</span>
+
+            <div class="article-author">
+                @article.Author.Name
             </div>
-            <p>@article.Content</p>
+            <div class="article-date">
+                @article.Date.ToShortDateString()
+            </div>
+
             <div>
                 @foreach (var tag in article.ArticleTags)
                 {
                     <span>@tag.Tag.Name</span>
                 }
             </div>
+
+            <div class="article-annotation">
+                <p>@article.Annotation</p>
+            </div>
+
             <div>
-                <a asp-action="">Read more</a>
+                <a asp-action="Details" asp-route-articleId="@article.ArticleId">Read more</a>
             </div>
         </div>
-           
+
         }
     }
 </div>

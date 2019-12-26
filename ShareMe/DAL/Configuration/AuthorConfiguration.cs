@@ -12,7 +12,7 @@ namespace ShareMe.DAL.Configuration
     {
         public void Configure(EntityTypeBuilder<Author> builder)
         {
-            builder.HasData(CreateAuthors());
+            //builder.HasData(CreateAuthors());
         }
 
         private IEnumerable<Author> CreateAuthors()

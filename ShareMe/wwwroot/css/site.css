@@ -7,14 +7,43 @@
 .article-thumbnail {
     background: white;
     border-style: solid;
+    margin: 2em;
 }
-.article-list {
-    width: 30em;
-    margin: auto;
-}
+
 .nav-panel {
+    float: left;
     width: 10em;
 }
 .category-item-selected {
     color: red;
+}
+.image-container {
+    text-align: center;
+}
+img {
+    width: 90%;
+    margin: 1em;
+}
+
+.article-author {
+    display: inline-block;
+    margin: 0 1em;
+}
+
+.article-date {
+    display: inline-block;
+    margin: 0 1em;
+}
+
+.article-annotation {
+    float: none;
+}
+
+.main-content {
+    margin: auto;
+    width: 50em;
+}
+
+.article-tags {
+
 }

@@ -22,7 +22,7 @@ namespace ShareMe.DAL.Configuration
                 .WithMany(t => t.ArticleTags)
                 .HasForeignKey(pt => pt.TagId);
 
-            builder.HasData(CreateArticleTags());
+            //builder.HasData(CreateArticleTags());
         }
 
         private IEnumerable<object> CreateArticleTags()
