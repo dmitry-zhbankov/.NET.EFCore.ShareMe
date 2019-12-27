@@ -4,33 +4,45 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ShareMe</title>
+    @*<link rel="stylesheet" href="~/css/css_reset.css"/>*@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header class="header">
-        <nav class="navbar">
-            <div class="container">
-                <a asp-area="" asp-controller="Home" asp-action="Index">ShareMe</a>
-                <div>
-                    <ul>
-                        <li>
-                            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div class="logo">
+            <a asp-area="" asp-controller="Home" asp-action="Index">ShareMe</a>
+        </div>
+        <div class="main-menu">
+            <ul>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Article" asp-action="Index">Articles</a>
+                </li>
+            </ul>
+        </div>
     </header>
-    <div class="main-content">
-        <main>
-            @RenderBody()
-        </main>
+    <div class="main">
+        <div class="main-content">
+            <main>
+                @RenderBody()
+            </main>
+        </div>
+        <div class="sidebar">
+            <ul>
+                <li>Category 1</li>
+                <li>Category 2</li>
+                <li>Category 3</li>
+                <li>Category 4</li>
+                <li>Category 5</li>
+                <li>Category 6</li>
+            </ul>
+        </div>
     </div>
-<div class="sidebar">
-    <partial />
-</div>
+    
     <footer class="footer">
-        <div class="container">
+        <div class="footer-content">
             &copy; 2019 - ShareMe
         </div>
     </footer>

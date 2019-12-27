@@ -1,4 +1,5 @@
-﻿@model ShareMe.Models.Entity.Article
+﻿@using ShareMe.Models.Entity
+@model ShareMe.Models.ViewModel.ArticleViewModel
 
 @{
     ViewData["Title"] = "Update article";
@@ -9,68 +10,101 @@
 @{
     var mod = @Model;
 }
-<form asp-action="Update" enctype="multipart/form-data" >
+
+<form asp-action="Update" enctype="multipart/form-data">
+
+    <input type="hidden" asp-for="@Model.Article.ArticleId" />
     
-    <input type="hidden" asp-for="ArticleId" />
-    
-    <dl>
-        <dt>
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Author.Name)
-        </dd>
+    @*<dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Author)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Author.Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Category.Title)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Category)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Category.Title)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ArticleTags)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ArticleTags)
+            </dt>
 
-        <dd>
-            @{
-                foreach (var tag in Model.ArticleTags)
-                {
-                    <input type="hidden" value="@tag.TagId" />
-                    <span>@tag.Tag.Name</span>
+            <dd>
+                @{
+                    foreach (var tag in Model.ArticleTags)
+                    {
+                        <input type="hidden" value="@tag.TagId" />
+                        <span>@tag.Tag.Name</span>
+                    }
                 }
-            }
-        </dd>
-    </dl>
+            </dd>
+        </dl>*@
 
     <div>
-        <label asp-for="Preview"></label>
+        <label asp-for="Article.Preview"></label>
         @{
             string imgSrc = "";
-            if (Model?.Preview != null)
+            if (Model.Article?.Preview != null)
             {
-                var base64 = Convert.ToBase64String(Model.Preview);
+                var base64 = Convert.ToBase64String(Model.Article.Preview);
                 imgSrc = String.Format("data:image/gif;base64,{0}", base64);
             }
             <img src="@imgSrc" />
         }
     </div>
-    
-        <div>
-            <input type="file" name="preview"/>
-        </div>
-    
+
     <div>
-        <label asp-for="Annotation"></label>
+        <input type="file" name="preview" />
+    </div>
+
+
+    <div>
+        <label asp-for="Authors"></label>
         <div>
-            <textarea asp-for="Annotation"></textarea>
+            <select asp-for="Author.AuthorId" asp-items="new SelectList(Model.Authors, nameof(Author.AuthorId), nameof(Author.Name))"></select>
         </div>
     </div>
 
     <div>
-        <label asp-for="Content"></label>
+        <label asp-for="Categories"></label>
         <div>
-            <textarea asp-for="Content"></textarea>
+            <select asp-for="Category.CategoryId" asp-items="new SelectList(Model.Categories, nameof(Category.CategoryId), nameof(Category.Title))"></select>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="Tags"></label>
+        <div>
+            <ul>
+                @{
+                    foreach (var tag in Model.Tags)
+                    {
+                        <li>
+                            <input type="checkbox" asp-for="@tag.IsChecked" />
+                            <label asp-for="@tag.Tag.Name"></label>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+    
+    <div>
+        <label asp-for="Article.Annotation"></label>
+        <div>
+            <textarea asp-for="Article.Annotation"></textarea>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="Article.Content"></label>
+        <div>
+            <textarea asp-for="Article.Content"></textarea>
         </div>
     </div>
 
