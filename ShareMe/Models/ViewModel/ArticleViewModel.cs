@@ -11,7 +11,7 @@ namespace ShareMe.Models.ViewModel
         public Article Article { get; set; }
         public IEnumerable<Category> Categories { get; set; }
         public Category Category { get; set; }
-        public IEnumerable<TagViewModel> Tags { get; set; }
+        public IList<TagViewModel> Tags { get; set; }
         public IEnumerable<Author> Authors { get; set; }
         public Author Author { get; set; }
     }

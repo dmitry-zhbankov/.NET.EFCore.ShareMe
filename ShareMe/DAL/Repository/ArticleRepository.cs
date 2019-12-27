@@ -9,7 +9,7 @@ using ShareMe.Models.Entity;
 
 namespace ShareMe.DAL.Repository
 {
-    public class ArticleRepository:GenericRepository<Article>,IArticleRepository
+    public class ArticleRepository : GenericRepository<Article>, IArticleRepository
     {
         public ArticleRepository(ShareMeContext context) : base(context)
         {
@@ -17,7 +17,7 @@ namespace ShareMe.DAL.Repository
 
         public override Article GetById(int? id)
         {
-            var query = dbSet.Where(x=>x.ArticleId==id)
+            var query = dbSet.Where(x => x.ArticleId == id)
                 .Include(x => x.Author)
                 .Include(x => x.Category)
                 .Include(x => x.ArticleTags)

@@ -64,7 +64,7 @@ namespace ShareMe.Areas.Admin.Controllers
                 Article = article,
                 Authors = authors,
                 Categories = categories,
-                Tags = tags
+                Tags = new List<TagViewModel>(tags)
             };
 
             return View(articleViewModel);
@@ -90,15 +90,28 @@ namespace ShareMe.Areas.Admin.Controllers
                 articleToUpdate = new Article()
                 {
                     Author = author,
-                    Category = category
+                    Category = category,
+                    ArticleTags = new List<ArticleTag>()
                 };
             }
 
             articleToUpdate.Content = articleViewModel.Article.Content;
             articleToUpdate.Annotation = articleViewModel.Article.Annotation;
-            var ms = new MemoryStream();
-            preview.CopyTo(ms);
-            articleToUpdate.Preview = ms.ToArray();
+
+            if (preview != null)
+            {
+                var ms = new MemoryStream();
+                preview.CopyTo(ms);
+                articleToUpdate.Preview = ms.ToArray();
+            }
+            else
+            {
+                articleToUpdate.Preview = articleViewModel.Article.Preview;
+            }
+
+            var tags = articleViewModel.Tags.Where(x => x.IsChecked).Select(x => x.Tag);
+
+            
 
             try
             {
@@ -107,11 +120,10 @@ namespace ShareMe.Areas.Admin.Controllers
             }
             catch
             {
-                return View();
+                return View(articleViewModel);
             }
 
             return RedirectToAction("Index");
         }
-
     }
 }

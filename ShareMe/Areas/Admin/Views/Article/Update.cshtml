@@ -7,43 +7,10 @@
 
 <h1>Article</h1>
 <hr />
-@{
-    var mod = @Model;
-}
 
 <form asp-action="Update" enctype="multipart/form-data">
 
     <input type="hidden" asp-for="@Model.Article.ArticleId" />
-    
-    @*<dl>
-            <dt>
-                @Html.DisplayNameFor(model => model.Author)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Author.Name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Category)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Category.Title)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ArticleTags)
-            </dt>
-
-            <dd>
-                @{
-                    foreach (var tag in Model.ArticleTags)
-                    {
-                        <input type="hidden" value="@tag.TagId" />
-                        <span>@tag.Tag.Name</span>
-                    }
-                }
-            </dd>
-        </dl>*@
 
     <div>
         <label asp-for="Article.Preview"></label>
@@ -57,6 +24,8 @@
             <img src="@imgSrc" />
         }
     </div>
+
+    <input type="hidden" asp-for="Article.Preview" />
 
     <div>
         <input type="file" name="preview" />
@@ -82,18 +51,20 @@
         <div>
             <ul>
                 @{
-                    foreach (var tag in Model.Tags)
+
+                    for (int i = 0; i < @Model.Tags.Count(); i++)
                     {
                         <li>
-                            <input type="checkbox" asp-for="@tag.IsChecked" />
-                            <label asp-for="@tag.Tag.Name"></label>
+                            <input type="hidden" asp-for="@Model.Tags[i].Tag.TagId" />
+                            <input type="checkbox" asp-for="Tags[i].IsChecked" />
+                            <label asp-for="Tags[i].IsChecked">@Model.Tags[i].Tag.Name</label>
                         </li>
                     }
                 }
             </ul>
         </div>
     </div>
-    
+
     <div>
         <label asp-for="Article.Annotation"></label>
         <div>
@@ -113,7 +84,7 @@
     </div>
 
 </form>
-    
+
 
 <div>
     <a asp-action="Index">Back to List</a>
