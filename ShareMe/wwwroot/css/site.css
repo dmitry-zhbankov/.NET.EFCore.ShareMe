@@ -3,8 +3,9 @@
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
+
 
 .article {
     background-color: white;
@@ -14,14 +15,21 @@
     background: white;
     border-style: solid;
     margin: 2em;
+    padding: 1em;
 }
 
 header {
     display: flex;
     border: solid;
     justify-content: center;
-
 }
+
+    header a {
+        display: block;
+        border: solid;
+        padding: 0.5em;
+        margin: 0.2em ;
+    }
 
 .logo {
     border: solid;
@@ -30,11 +38,7 @@ header {
     width: 10em;
 }
 
-    .logo a {
-        border: solid;
-        padding: 0.5em;
-        margin: 0.2em;
-    }
+
 
 .main-menu {
     width: 40em;
@@ -45,20 +49,12 @@ header {
         padding: 0;
         margin: 0;
         display: flex;
-        
         flex-wrap: wrap;
     }
 
     .main-menu li {
         display: block;
     }
-
-        .main-menu li a {
-            display: block;
-            border: solid;
-            padding: 0.5em;
-            margin: 0.2em 2em;
-        }
 
 .nav-panel {
     float: left;
@@ -95,7 +91,6 @@ img {
     border: solid;
     width: 38em;
     padding: 1em;
-    min-height: 50em;
 }
 
 .main {
@@ -103,11 +98,15 @@ img {
     justify-content: center;
     align-items: flex-start;
     border: solid;
+    min-height: 30em;
 }
 
 .article-tags {
-
 }
+
+    .article-tags li {
+        display: inline-block;
+    }
 
 .sidebar {
     border: solid;
@@ -128,12 +127,20 @@ footer {
 
 
 .logging-bar {
+    display: inline-block;
     padding: 2em;
     border: solid;
-    display: inline-block;
 }
 
-.logging-bar input {
-    font-size: 1em;
+select {
+    font-size: inherit;
+}
+
+input {
+    font-size: inherit;
     margin: 0.2em;
+}
+
+li {
+    list-style: none;
 }

@@ -4,46 +4,49 @@
     ViewData["Title"] = Model.Title;
 }
 
-<h1>@Model.Title</h1>
+<div class="main-content">
+    <h1>@Model.Title</h1>
 
-<div class="article-category">
-    @Model.Category.Title
-</div>
+    <div class="article-category">
+        @Model.Category.Title
+    </div>
 
-<div class="article-author">
-    @Model.Author.Name
-</div>
+    <div class="article-author">
+        @Model.Author.Name
+    </div>
 
-<div class="article-date">
-    @Model.Date.ToShortDateString()
-</div>
+    <div class="article-date">
+        @Model.Date.ToShortDateString()
+    </div>
 
-<div class="article-tags">
-    @{
-        foreach (var tag in Model.ArticleTags)
-        {
-            <span>@tag.Tag.Name</span>
+    <div class="article-tags">
+        <ul>
+            @foreach (var tag in Model.ArticleTags)
+            {
+                <li>@tag.Tag.Name</li>
+            }
+        </ul>
+    </div>
+
+    <div class="image-container">
+        @{
+            string imgSrc = "";
+            if (Model.Preview != null)
+            {
+                var base64 = Convert.ToBase64String(Model.Preview);
+                imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            }
+            <img src="@imgSrc" />
         }
-    }
-</div>
-
-<div class="image-container">
-    @{
-        string imgSrc = "";
-        if (Model.Preview != null)
-        {
-            var base64 = Convert.ToBase64String(Model.Preview);
-            imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-        }
-        <img src="@imgSrc" />
-    }
-</div>
+    </div>
 
 
-<div class="article-content">
-    @Model.Content
+    <div class="article-content">
+        @Model.Content
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to list</a>
+    </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to list</a>
-</div>

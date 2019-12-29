@@ -4,52 +4,57 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="main-content">
+    <main>
+        <h1>Index</h1>
 
-<div class="nav-panel">
+        <div class="article-list">
+            @{
+                foreach (var article in Model)
+                {
+                    <div class="article-thumbnail">
+                        <div>
+                            @{
+                                string imgSrc = "";
+                                if (article.Preview != null)
+                                {
+                                    var base64 = Convert.ToBase64String(article.Preview);
+                                    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                }
+                                <img src="@imgSrc" />
+                            }
+                        </div>
 
+                        <div class="article-author">
+                            @article.Author.Name
+                        </div>
+                        <div class="article-date">
+                            @article.Date.ToShortDateString()
+                        </div>
+
+                        <div class="article-tags">
+                            <ul>
+                                @foreach (var tag in article.ArticleTags)
+                                {
+                                    <li>@tag.Tag.Name</li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="article-annotation">
+                            <p>@article.Annotation</p>
+                        </div>
+                        <hr />
+                        <div>
+                            <a asp-action="Details" asp-route-articleId="@article.ArticleId">Read more</a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </main>
 </div>
 
-<div>
-    @{
-        foreach (var article in Model)
-        {
-        <div class="article-thumbnail">
-            <div class="image-container">
-                @{
-                    string imgSrc = "";
-                    if (article.Preview != null)
-                    {
-                        var base64 = Convert.ToBase64String(article.Preview);
-                        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                    }
-                    <img src="@imgSrc" />
-                }
-            </div>
-
-            <div class="article-author">
-                @article.Author.Name
-            </div>
-            <div class="article-date">
-                @article.Date.ToShortDateString()
-            </div>
-
-            <div>
-                @foreach (var tag in article.ArticleTags)
-                {
-                    <span>@tag.Tag.Name</span>
-                }
-            </div>
-
-            <div class="article-annotation">
-                <p>@article.Annotation</p>
-            </div>
-
-            <div>
-                <a asp-action="Details" asp-route-articleId="@article.ArticleId">Read more</a>
-            </div>
-        </div>
-
-        }
-    }
+<div class="sidebar">   
+    @await Component.InvokeAsync("CategoryList",ViewContext.RouteData.Values["categoryId"]);
 </div>

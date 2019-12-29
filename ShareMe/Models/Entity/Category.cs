@@ -9,6 +9,6 @@ namespace ShareMe.Models.Entity
     {
         public int CategoryId { get; set; }
         public string Title { get; set; }
-        private ICollection<Article> Articles { get; set; }
+        public ICollection<Article> Articles { get; set; }
     }
 }

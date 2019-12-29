@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ShareMe.Models.Entity.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="main-content">
+    <h1>Index</h1>
+
+    <a asp-action="Update">Create new category</a>
+    <hr />
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var Category in Model)
+        {
+            <tr>
+                <td>@Category.Title</td>
+                <td>
+                    <a asp-action="Update" asp-route-CategoryId="@Category.CategoryId">Edit</a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-CategoryId="@Category.CategoryId">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

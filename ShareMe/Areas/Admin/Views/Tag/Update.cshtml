@@ -1,0 +1,23 @@
+﻿@model ShareMe.Models.Entity.Tag
+
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="main-content">
+<h1>Update</h1>
+
+    <form asp-action="Update">
+        <input type="hidden" asp-for="TagId" />
+        <div>
+            <label asp-for="Name"></label>
+            <input asp-for="Name" />
+        </div>        
+        <div>
+            <input type="submit" value="Submit"/>
+        </div>
+    </form>
+</div>
+
+

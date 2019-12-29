@@ -14,33 +14,17 @@
         </div>
         <div class="main-menu">
             <ul>
-                <li>
-                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
-                <li>
-                    <a asp-area="" asp-controller="Article" asp-action="Index">Articles</a>
-                </li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="" asp-controller="Article" asp-action="Index">Articles</a></li>
             </ul>
+        </div>
+        <div>
+            <a asp-controller=Login asp-action="Index">Login</a>
         </div>
     </header>
     <div class="main">
-        <div class="main-content">
-            <main>
-                @RenderBody()
-            </main>
-        </div>
-        <div class="sidebar">
-            <ul>
-                <li>Category 1</li>
-                <li>Category 2</li>
-                <li>Category 3</li>
-                <li>Category 4</li>
-                <li>Category 5</li>
-                <li>Category 6</li>
-            </ul>
-        </div>
+        @RenderBody()
     </div>
-    
     <footer class="footer">
         <div class="footer-content">
             &copy; 2019 - ShareMe

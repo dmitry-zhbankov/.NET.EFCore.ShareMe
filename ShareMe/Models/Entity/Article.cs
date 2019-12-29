@@ -14,7 +14,7 @@ namespace ShareMe.Models.Entity
         public string Content { get; set; }
         [Required] public Category Category { get; set; }
         [Required] public Author Author { get; set; }
-        public ICollection<ArticleTag> ArticleTags { get; set; }
+        public IEnumerable<ArticleTag> ArticleTags { get; set; }
         [Required] public DateTime Date { get; set; }
         public int Views { get; set; }
         public byte[] Preview { get; set; }

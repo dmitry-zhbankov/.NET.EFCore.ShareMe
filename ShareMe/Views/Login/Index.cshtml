@@ -1,32 +1,32 @@
 ﻿
-@{
-    ViewData["Title"] = "Index";
-}
-
-<h1>Login</h1>
-
-@ViewBag.Error
-<form method="post" asp-controller="login" asp-action="process">
+<div class="main-content">
+    @{
+        ViewData["Title"] = "Index";
+    }
+    <h1>Login</h1>
+    @ViewBag.Error
     <div class="logging-bar">
-        <table>
-            <tr>
-                <td>Username</td>
-                <td>
-                    <input type="text" name="username" />
-                </td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td>
-                    <input type="password" name="password" />
-                </td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>
-                    <input type="submit" value="Login" />
-                </td>
-            </tr>
-        </table>
+        <form method="post" asp-controller="login" asp-action="process">
+            <table>
+                <tr>
+                    <td>Username</td>
+                    <td>
+                        <input type="text" name="username" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>
+                        <input type="password" name="password" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input type="submit" value="Login" />
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
-</form>
+</div>

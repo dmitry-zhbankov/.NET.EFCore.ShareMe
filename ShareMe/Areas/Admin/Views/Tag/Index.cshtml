@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ShareMe.Models.Entity.Tag>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="main-content">
+    <h1>Index</h1>
+
+    <a asp-action="Update">Create new tag</a>
+    <hr />
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var tag in Model)
+        {
+            <tr>
+                <td>@tag.Name</td>
+                <td>
+                    <a asp-action="Update" asp-route-tagId="@tag.TagId">Edit</a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-tagId="@tag.TagId">Delete</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

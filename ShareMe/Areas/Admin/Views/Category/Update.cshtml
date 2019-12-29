@@ -1,0 +1,23 @@
+﻿@model ShareMe.Models.Entity.Category
+
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="main-content">
+    <h1>Category</h1>
+
+    <form asp-action="Update">
+        <input type="hidden" asp-for="CategoryId" />
+        <div>
+            <label asp-for="Title"></label>
+            <input asp-for="Title" />
+        </div>
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+</div>
+
+

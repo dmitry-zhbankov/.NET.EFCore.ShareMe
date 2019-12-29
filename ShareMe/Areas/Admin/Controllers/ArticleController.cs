@@ -21,7 +21,6 @@ namespace ShareMe.Areas.Admin.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        [Area("Admin")]
         public IActionResult Index(int? categoryId, int? tagId, int? authorId)
         {
             var articles = unitOfWork.ArticleRepository.Get(x =>
@@ -30,17 +29,6 @@ namespace ShareMe.Areas.Admin.Controllers
             );
             return View(articles);
         }
-
-        //public IActionResult Edit(int? articleId)
-        //{
-        //    if (articleId == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var article = unitOfWork.ArticleRepository.GetById(articleId);
-        //    return View("Update", article);
-        //}
 
         public IActionResult Update(int? authorId, int? categoryId, int? articleId)
         {
@@ -71,7 +59,7 @@ namespace ShareMe.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(ArticleViewModel articleViewModel, IFormFile preview)
+        public IActionResult Update(ArticleViewModel articleViewModel, IFormFile preview)
         {
             if (articleViewModel == null)
             {
@@ -82,8 +70,6 @@ namespace ShareMe.Areas.Admin.Controllers
 
             if (articleToUpdate == null)
             {
-                articleViewModel.Article.Date = DateTime.Now;
-
                 var author = unitOfWork.AuthorRepository.GetById(articleViewModel.Author.AuthorId);
                 var category = unitOfWork.CategoryRepository.GetById(articleViewModel.Category.CategoryId);
 
@@ -91,7 +77,8 @@ namespace ShareMe.Areas.Admin.Controllers
                 {
                     Author = author,
                     Category = category,
-                    ArticleTags = new List<ArticleTag>()
+                    ArticleTags = new List<ArticleTag>(),
+                    Date = DateTime.Now
                 };
             }
 
@@ -111,7 +98,11 @@ namespace ShareMe.Areas.Admin.Controllers
 
             var tags = articleViewModel.Tags.Where(x => x.IsChecked).Select(x => x.Tag);
 
-            
+            articleToUpdate.ArticleTags = tags.Select(x => new ArticleTag()
+            {
+                TagId = x.TagId,
+                ArticleId = articleToUpdate.ArticleId
+            });
 
             try
             {
@@ -123,6 +114,25 @@ namespace ShareMe.Areas.Admin.Controllers
                 return View(articleViewModel);
             }
 
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int? articleId)
+        {            
+            if (articleId == null)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                unitOfWork.ArticleRepository.Delete((int)articleId);
+                unitOfWork.Save();
+                ViewBag.Message = "Delete succeeded";
+            }
+            catch
+            {
+                ViewBag.Message = "Delete failed";
+            }
             return RedirectToAction("Index");
         }
     }

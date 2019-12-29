@@ -5,87 +5,89 @@
     ViewData["Title"] = "Update article";
 }
 
-<h1>Article</h1>
-<hr />
+    <div class="main-content">
+        <h1>Article</h1>
+        <hr />
 
-<form asp-action="Update" enctype="multipart/form-data">
+        <form asp-action="Update" enctype="multipart/form-data">
 
-    <input type="hidden" asp-for="@Model.Article.ArticleId" />
+            <input type="hidden" asp-for="@Model.Article.ArticleId" />
 
-    <div>
-        <label asp-for="Article.Preview"></label>
-        @{
-            string imgSrc = "";
-            if (Model.Article?.Preview != null)
-            {
-                var base64 = Convert.ToBase64String(Model.Article.Preview);
-                imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-            }
-            <img src="@imgSrc" />
-        }
-    </div>
-
-    <input type="hidden" asp-for="Article.Preview" />
-
-    <div>
-        <input type="file" name="preview" />
-    </div>
-
-
-    <div>
-        <label asp-for="Authors"></label>
-        <div>
-            <select asp-for="Author.AuthorId" asp-items="new SelectList(Model.Authors, nameof(Author.AuthorId), nameof(Author.Name))"></select>
-        </div>
-    </div>
-
-    <div>
-        <label asp-for="Categories"></label>
-        <div>
-            <select asp-for="Category.CategoryId" asp-items="new SelectList(Model.Categories, nameof(Category.CategoryId), nameof(Category.Title))"></select>
-        </div>
-    </div>
-
-    <div>
-        <label asp-for="Tags"></label>
-        <div>
-            <ul>
+            <div>
+                <label asp-for="Article.Preview"></label>
                 @{
-
-                    for (int i = 0; i < @Model.Tags.Count(); i++)
+                    string imgSrc = "";
+                    if (Model.Article?.Preview != null)
                     {
-                        <li>
-                            <input type="hidden" asp-for="@Model.Tags[i].Tag.TagId" />
-                            <input type="checkbox" asp-for="Tags[i].IsChecked" />
-                            <label asp-for="Tags[i].IsChecked">@Model.Tags[i].Tag.Name</label>
-                        </li>
+                        var base64 = Convert.ToBase64String(Model.Article.Preview);
+                        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
                     }
+                    <img src="@imgSrc" />
                 }
-            </ul>
-        </div>
-    </div>
+            </div>
 
-    <div>
-        <label asp-for="Article.Annotation"></label>
+            <input type="hidden" asp-for="Article.Preview" />
+
+            <div>
+                <input type="file" name="preview" />
+            </div>
+
+
+            <div>
+                <label asp-for="Authors"></label>
+                <div>
+                    <select asp-for="Author.AuthorId" asp-items="new SelectList(Model.Authors, nameof(Author.AuthorId), nameof(Author.Name))"></select>
+                </div>
+            </div>
+
+            <div>
+                <label asp-for="Categories"></label>
+                <div>
+                    <select asp-for="Category.CategoryId" asp-items="new SelectList(Model.Categories, nameof(Category.CategoryId), nameof(Category.Title))"></select>
+                </div>
+            </div>
+
+            <div class="article-tags">
+                <label asp-for="Tags"></label>
+                <div>
+                    <ul>
+                        @{
+
+                            for (int i = 0; i < @Model.Tags.Count(); i++)
+                            {
+                                <li>
+                                    <input type="hidden" asp-for="@Model.Tags[i].Tag.TagId" />
+                                    <input type="checkbox" asp-for="Tags[i].IsChecked" />
+                                    <label asp-for="Tags[i].IsChecked">@Model.Tags[i].Tag.Name</label>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <label asp-for="Article.Annotation"></label>
+                <div>
+                    <textarea asp-for="Article.Annotation"></textarea>
+                </div>
+            </div>
+
+            <div>
+                <label asp-for="Article.Content"></label>
+                <div>
+                    <textarea asp-for="Article.Content"></textarea>
+                </div>
+            </div>
+
+            <div>
+                <input type="submit" value="Submit" />
+            </div>
+
+        </form>
+
+
         <div>
-            <textarea asp-for="Article.Annotation"></textarea>
+            <a asp-action="Index">Back to List</a>
         </div>
     </div>
-
-    <div>
-        <label asp-for="Article.Content"></label>
-        <div>
-            <textarea asp-for="Article.Content"></textarea>
-        </div>
-    </div>
-
-    <div>
-        <input type="submit" value="Submit" />
-    </div>
-
-</form>
-
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
