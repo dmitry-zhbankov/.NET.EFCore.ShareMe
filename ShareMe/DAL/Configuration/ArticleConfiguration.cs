@@ -111,6 +111,5 @@ namespace ShareMe.DAL.Configuration
 
             return list;
         }
-
     }
 }

@@ -17,12 +17,11 @@ namespace ShareMe.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index(int? articleId, int? categoryId, int? tagId, int? authorId)
+        public IActionResult Index(int? articleId, int? categoryId, int? authorId)
         {
-            var articles = unitOfWork.ArticleRepository.Get(x => 
-                (articleId==null || x.ArticleId==articleId)&&
-                (categoryId == null || x.Category.CategoryId== categoryId) &&
-                //(tagId == null || x.ArticleTags.Any(y=>y.TagId == tagId) ) &&
+            var articles = unitOfWork.ArticleRepository.Get(x =>
+                (articleId == null || x.ArticleId == articleId) &&
+                (categoryId == null || x.Category.CategoryId == categoryId) &&
                 (authorId == null || x.Author.AuthorId == authorId)
                 );
             return View(articles);
@@ -31,7 +30,7 @@ namespace ShareMe.Controllers
         public IActionResult Details(int? articleId)
         {
             var article = unitOfWork.ArticleRepository.GetById(articleId);
-            if (article==null)
+            if (article == null)
             {
                 return NotFound();
             }

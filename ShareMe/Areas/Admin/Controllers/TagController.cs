@@ -12,22 +12,21 @@ namespace ShareMe.Areas.Admin.Controllers
     public class TagController : Controller
     {
         IUnitOfWork unitOfWork;
+
         public TagController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
+
         public IActionResult Index()
         {
             var tags = unitOfWork.TagRepository.Get(x => true);
             return View(tags);
         }
+
         public IActionResult Update(int? tagId)
         {
-            var tag = unitOfWork.TagRepository.GetById(tagId);
-            if (tag == null)
-            {
-                tag = new Tag();                                
-            }
+            var tag = unitOfWork.TagRepository.GetById(tagId) ?? new Tag();
             return View(tag);
         }
 

@@ -10,6 +10,7 @@ namespace ShareMe.Controllers
     public class CategoryController : Controller
     {
         private IUnitOfWork unitOfWork;
+
         public IActionResult Index(IUnitOfWork unitOfWork, int? categoryId)
         {
             this.unitOfWork = unitOfWork;

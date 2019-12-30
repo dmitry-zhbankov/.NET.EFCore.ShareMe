@@ -12,15 +12,18 @@ namespace ShareMe.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         IUnitOfWork unitOfWork;
+
         public CategoryController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
+
         public IActionResult Index()
         {
             var categories = unitOfWork.CategoryRepository.Get(x => true);
             return View(categories);
         }
+
         public IActionResult Update(int? categoryId)
         {
             var category = unitOfWork.CategoryRepository.GetById(categoryId);

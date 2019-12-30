@@ -20,7 +20,7 @@ namespace ShareMe.Controllers
             if (username != null && password != null && username.Equals("admin") && password.Equals("123"))
             {
                 HttpContext.Session.SetString("username", username);
-                return RedirectToAction("Index", "Home", new{area="Admin"});
+                return RedirectToAction("Index", "Home", new { area = "Admin" });
             }
             else
             {

@@ -10,10 +10,15 @@ namespace ShareMe.DAL.UnitOfWork
     public interface IUnitOfWork : IDisposable
     {
         DbContext Context { get; }
+
         IArticleRepository ArticleRepository { get; }
+
         ICategoryRepository CategoryRepository { get; }
-        IAuthorRepository AuthorRepository { get;  }
+
+        IAuthorRepository AuthorRepository { get; }
+
         ITagRepository TagRepository { get; }
+
         int Save();
     }
 }

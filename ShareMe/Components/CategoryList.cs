@@ -6,10 +6,11 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace ShareMe.ViewComponents
-{    
+{
     public class CategoryList : ViewComponent
     {
         IUnitOfWork unitOfWork;
+        
         public CategoryList(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
@@ -18,7 +19,7 @@ namespace ShareMe.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(int? categoryId)
         {
             var categories = unitOfWork.CategoryRepository.Get(x => true);
-            return await Task.Run(()=>View("_CategoryList", categories));
+            return await Task.Run(() => View("_CategoryList", categories));
         }
     }
 }

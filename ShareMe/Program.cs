@@ -52,10 +52,8 @@ namespace ShareMe
                     }
                 }
             }
-
             return webHost;
         }
-
     }
 }
-    
+

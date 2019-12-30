@@ -19,18 +19,15 @@ namespace ShareMe.Middlewares
         public Task Invoke(HttpContext httpContext)
         {
             var path = httpContext.Request.Path;
-            if (path.HasValue && path.Value.StartsWith("/admin"))
+            if (!path.HasValue || !path.Value.StartsWith("/admin")) return _next(httpContext);
+            if (httpContext.Session.GetString("username") == null)
             {
-                if (httpContext.Session.GetString("username") == null)
-                {
-                    httpContext.Response.Redirect("/login/index");
-                }
+                httpContext.Response.Redirect("/login/index");
             }
             return _next(httpContext);
         }
     }
 
-    // Extension method used to add the middleware to the HTTP request pipeline.
     public static class AuthenticationMiddlewareExtensions
     {
         public static IApplicationBuilder UseAuthenticationMiddleware(this IApplicationBuilder builder)

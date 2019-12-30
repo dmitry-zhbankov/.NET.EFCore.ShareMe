@@ -8,14 +8,14 @@ using ShareMe.DAL.Repository;
 
 namespace ShareMe.DAL.UnitOfWork
 {
-    public class UnitOfWork:IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         ShareMeContext context;
         bool disposed;
 
         public DbContext Context => context;
-        public IArticleRepository ArticleRepository { get;}
-        public ICategoryRepository CategoryRepository { get;  }
+        public IArticleRepository ArticleRepository { get; }
+        public ICategoryRepository CategoryRepository { get; }
         public IAuthorRepository AuthorRepository { get; }
         public ITagRepository TagRepository { get; }
 
@@ -27,10 +27,12 @@ namespace ShareMe.DAL.UnitOfWork
             AuthorRepository = authorRepository;
             TagRepository = tagRepository;
         }
+
         public int Save()
         {
             return context.SaveChanges();
         }
+
         protected virtual void Dispose(bool disposing)
         {
             if (disposed)
@@ -54,6 +56,5 @@ namespace ShareMe.DAL.UnitOfWork
         {
             Dispose(false);
         }
-
     }
 }

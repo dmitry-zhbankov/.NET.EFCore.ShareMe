@@ -9,6 +9,7 @@ namespace ShareMe.Models.ViewModel
     public class TagViewModel
     {
         public Tag Tag { get; set; }
+
         public bool IsChecked { get; set; }
     }
 }

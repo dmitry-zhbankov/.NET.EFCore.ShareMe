@@ -118,7 +118,7 @@ namespace ShareMe.Areas.Admin.Controllers
         }
 
         public IActionResult Delete(int? articleId)
-        {            
+        {
             if (articleId == null)
             {
                 return BadRequest();

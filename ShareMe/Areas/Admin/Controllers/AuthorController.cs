@@ -12,15 +12,18 @@ namespace ShareMe.Areas.Admin.Controllers
     public class AuthorController : Controller
     {
         IUnitOfWork unitOfWork;
+
         public AuthorController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
+
         public IActionResult Index()
         {
             var authors = unitOfWork.AuthorRepository.Get(x => true);
             return View(authors);
         }
+
         public IActionResult Update(int? authorId)
         {
             var author = unitOfWork.AuthorRepository.GetById(authorId);
