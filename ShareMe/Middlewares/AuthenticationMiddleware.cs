@@ -18,8 +18,8 @@ namespace ShareMe.Middlewares
 
         public Task Invoke(HttpContext httpContext)
         {
-            var path = httpContext.Request.Path;
-            if (!path.HasValue || !path.Value.StartsWith("/admin")) return _next(httpContext);
+            var area = (string)httpContext.Request.RouteValues["Area"];
+            if (area!="Admin") return _next(httpContext);
             if (httpContext.Session.GetString("username") == null)
             {
                 httpContext.Response.Redirect("/login/index");
