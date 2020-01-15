@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20191223150203_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191223150203_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191224100837_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191224100837_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191224110700_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191224110700_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191226113319_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191226113319_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191226123549_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191226123549_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191226130733_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191226130733_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191226131001_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191226131001_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191226131307_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191226131307_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191226134551_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191226134551_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191226134703_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191226134703_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\Data\" />
+  </ItemGroup>
+
+
+
+</Project>

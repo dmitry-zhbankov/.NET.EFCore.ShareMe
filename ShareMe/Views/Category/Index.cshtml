@@ -1,0 +1,17 @@
+﻿@model IEnumerable<ShareMe.Models.Entity.Category>
+
+<ul>
+    @foreach (var category in Model)
+    {
+        string strClass;
+        if (ViewBag.CategoryId == category.CategoryId)
+        {
+            strClass = "category-item-selected";
+        }
+        else
+        {
+            strClass = "category-item";
+        }
+        <li class="@strClass">@category.Title</li>
+    }
+</ul>

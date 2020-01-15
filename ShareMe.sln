@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareMe", "ShareMe\ShareMe.csproj", "{04CF7CB8-5B8C-4C1C-917E-DA1A9FE17A03}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04CF7CB8-5B8C-4C1C-917E-DA1A9FE17A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04CF7CB8-5B8C-4C1C-917E-DA1A9FE17A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04CF7CB8-5B8C-4C1C-917E-DA1A9FE17A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04CF7CB8-5B8C-4C1C-917E-DA1A9FE17A03}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {238C6F42-A139-42A6-AFEE-21055F116611}
+	EndGlobalSection
+EndGlobal

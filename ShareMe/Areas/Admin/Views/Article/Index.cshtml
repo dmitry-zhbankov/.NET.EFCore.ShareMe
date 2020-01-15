@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ShareMe.Models.Entity.Article>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="main-content">
+    <main>
+        <h1>Index</h1>
+
+        <div>
+            <a asp-action="Update">Create new article</a>
+        </div>
+
+        <div class="article-list">
+            @{
+                foreach (var article in Model)
+                {
+                    <div class="article-thumbnail">
+                        <div>
+                            @{
+                                string imgSrc = "";
+                                if (article.Preview != null)
+                                {
+                                    var base64 = Convert.ToBase64String(article.Preview);
+                                    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                }
+                                <img src="@imgSrc" />
+                            }
+                        </div>
+
+                        <div>
+                            <span>@article.Author.Name</span>
+                            <span>@article.Date.ToShortDateString()</span>
+                        </div>
+
+                        <p>@article.Annotation</p>
+
+                        <div>
+                            @foreach (var tag in article.ArticleTags)
+                            {
+                                <span>@tag.Tag.Name</span>
+                            }
+                        </div>
+                        <hr />
+                        <div>
+                            <a asp-area="" asp-action="Details" asp-route-articleId="@article.ArticleId">Read</a> | <a asp-action="Update" asp-route-articleId="@article.ArticleId">Edit</a> | <a asp-action="Delete" asp-route-articleId="@article.ArticleId">Delete</a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </main>
+</div>

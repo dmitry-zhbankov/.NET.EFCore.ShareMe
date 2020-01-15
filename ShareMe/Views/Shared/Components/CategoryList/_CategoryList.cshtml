@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ShareMe.Models.Entity.Category>
+<h2>Categories</h2>
+<ul>
+    <li>
+        @{
+            int count = 0;
+            foreach (var item in Model)
+            {
+                count += item.Articles.Count();
+            }
+            <a asp-action="Index">All categories (@count)</a>
+        }
+
+    </li>
+    @foreach (var category in Model)
+    {
+        <li>
+            <a asp-action="Index" asp-route-categoryId="@category.CategoryId">
+                @category.Title (@category.Articles.Count())
+            </a>
+        </li>
+    }
+</ul>
